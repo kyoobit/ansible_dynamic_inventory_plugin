@@ -96,36 +96,36 @@ WARNING:root:Using a non-secure URL: http://127.0.0.1:8000/inventory
 The `sample-inventory.json` file is an example JSON inventory response the dynamic inventory plugin is able to parse. The only required field node is the `hosts` list of host names.
 ```json
 {
-    'groups': {
-        'group001': [
-            'host001',
-            'host002',
-        ],
-        'group002': [
-            'host003',
-            'host004',
-        ],
+  "group_vars": {
+    "all": {
+      "var01": "foo"
     },
-    'group_vars': {
-        'all': {
-            'var01': 'foo',
-        },
-        'group001': {
-            'var01': 'bar',
-        }
-    },
-    'hosts': [
-        'host001',
-        'host002',
-        'host003',
-        'host004',
-        'host005',
-    ],
-    'host_vars': {
-        'host001': {
-            'ansible_host': 'host001.example.com',
-            'ansible_private_key_file': "{{ lookup('env','HOME') }}/.ssh/host001.example.com_ecdsa",
-        },
+    "group001": {
+      "var01": "bar"
     }
+  },
+  "groups": {
+    "group001": [
+      "host001",
+      "host002"
+    ],
+    "group002": [
+      "host003",
+      "host004"
+    ]
+  },
+  "host_vars": {
+    "host001": {
+      "ansible_host": "host001.example.com",
+      "ansible_private_key_file": "{{ lookup('env','HOME') }}/.ssh/host001.example.com_ecdsa"
+    }
+  },
+  "hosts": [
+    "host001",
+    "host002",
+    "host003",
+    "host004",
+    "host005"
+  ]
 }
 ```
