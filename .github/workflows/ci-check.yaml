@@ -15,9 +15,12 @@ jobs:
         python-version: ["3.12"]
 
     steps:
+      ## https://github.com/actions/checkout
       - uses: actions/checkout@v4
+
+      ## https://github.com/actions/setup-python
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
