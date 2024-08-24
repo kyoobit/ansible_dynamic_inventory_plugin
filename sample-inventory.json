@@ -1,0 +1,33 @@
+{
+  "group_vars": {
+    "all": {
+      "var01": "foo"
+    },
+    "group001": {
+      "var01": "bar"
+    }
+  },
+  "groups": {
+    "group001": [
+      "host001",
+      "host002"
+    ],
+    "group002": [
+      "host003",
+      "host004"
+    ]
+  },
+  "host_vars": {
+    "host001": {
+      "ansible_host": "host001.example.com",
+      "ansible_private_key_file": "{{ lookup('env','HOME') }}/.ssh/host001.example.com_ecdsa"
+    }
+  },
+  "hosts": [
+    "host001",
+    "host002",
+    "host003",
+    "host004",
+    "host005"
+  ]
+}

@@ -1,0 +1,5 @@
+ansible
+fastapi[standard]
+black
+pytest
+ruff
