@@ -1,26 +1,36 @@
 name: CI Checks
+permissions:
+  contents: read
 
+## This workflow runs when any of the following occur:
+## * A push is made to the main branch
+## * A pull request is created or updated in the main branch
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   pull_request:
-    branches: ["main"]
+    branches:
+      - main
 
 jobs:
-  build:
 
+  ## This builds the application and runs CI checks
+  ## A matrix stategy is used to allow for future python versions
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.12"]
+        python-version: ["3.12", "3.13", "3.14"]
 
     steps:
       ## https://github.com/actions/checkout
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       ## https://github.com/actions/setup-python
+      ## https://github.com/actions/python-versions
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
